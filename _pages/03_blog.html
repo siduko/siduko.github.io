@@ -1,0 +1,33 @@
+---
+title: Blog
+permalink: /blog/
+layout: page
+excerpt: All the latest news from the Electron team and community.
+---
+
+
+{% for post in paginator.posts %}
+	<div class="blog-post">
+	  <h2 class="blog-post-title"><a href="{{post.url}}">{{ post.title }}</a></h2>
+	  <p class="blog-post-meta">{{ page.date | date: "%b %-d, %Y" }} {% if page.author %} by <a href="#">{{ page.author }}</a>{% endif %}  {% if page.meta %} • {{ page.meta }}{% endif %} </p>
+	  <p>{{post.excerpt}}</p>
+	</div>
+	<hr>
+{% endfor %}
+
+<!-- Pagination links -->
+<div class="pagination">
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path }}" class="previous">Previous</a>
+  {% else %}
+    <span class="previous">Previous</span>
+  {% endif %}
+  <span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path }}" class="next">Next</a>
+  {% else %}
+    <span class="next ">Next</span>
+  {% endif %}
+</div>
+
+<p>subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
