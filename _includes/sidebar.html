@@ -18,9 +18,38 @@
   </ol>
 </div>
 <div class="sidebar-module">
-  <h4>Elsewhere</h4>
+  <h4>Tags</h4>
+  <div class="">
+    {% capture tags %}
+      {% for tag in site.tags %}
+        {{ tag[0] }}
+      {% endfor %}
+    {% endcapture %}
+    {% assign sortedtags = tags | split:' ' | sort %}
+
+    {% for tag in sortedtags %}
+      <a href="/tag/{{ tag }}"><span class="label label-default">{{tag}}</span></a>
+    {% endfor %}
+  </div>
+</div>
+<div class="sidebar-module">
+  <h4>Categories</h4>
+  {% capture categories %}
+    {% for category in site.categories %}
+      {{ category[0] }}
+    {% endfor %}
+  {% endcapture %}
+  {% assign sortedCategories = categories | split:' ' | sort %}
   <ol class="list-unstyled">
-    <li><a href="#">GitHub</a></li>
+    {% for category in sortedCategories %}
+      <li><a href="/category/{{category}}">{{category}}</a></li>
+    {% endfor %}
+  </ol>
+</div>
+<div class="sidebar-module">
+  <h4>Connects</h4>
+  <ol class="list-unstyled">
+    <li><a href="https://siduko.github.io">GitHub</a></li>
     <li><a href="#">Twitter</a></li>
     <li><a href="#">Facebook</a></li>
   </ol>
